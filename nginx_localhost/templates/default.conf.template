@@ -1,0 +1,45 @@
+
+upstream rest-api {
+    server rest-api:8001;
+}
+
+
+upstream swagger-editor {
+    server swagger-editor:8080;
+}
+
+upstream swagger-ui {
+    server swagger-ui:8080;
+}
+
+
+server {
+    listen 80;
+    server_name ${FQDN};
+
+
+  location /swagger-editor/ {
+        proxy_pass http://swagger-editor/;
+    }
+
+  location /swagger-ui/ {
+        proxy_pass http://swagger-ui/;
+    }
+
+
+    location / {
+        proxy_pass http://rest-api;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+        client_max_body_size 10M;
+    }
+
+    location /media/ {
+        alias ${MEDIA_DIR};
+    }
+
+     location /static/ {
+        alias ${STATIC_DIR};
+    }
+
+}

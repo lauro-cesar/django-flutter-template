@@ -1,0 +1,77 @@
+version: "3.8"
+
+services:
+  datastore:
+    image: postgis/postgis:12-2.5-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - datastore_volume:/var/lib/postgresql/backend-api/data/
+    env_file:
+      - .env-localhost-db
+
+
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    expose:
+      - 8080
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    expose:
+      - 8080
+
+  redis:
+    image: redis:6.0.8-alpine
+
+  cache:
+    image: memcached
+    ports:
+      - "11211:11211"
+    entrypoint:
+      - memcached
+      - -m 64
+
+  rest-api:
+    build: backend
+    command: gunicorn project.wsgi:application --bind 0.0.0.0:8001
+    expose:
+      - 8001
+
+    volumes:
+      - static_volume:/home/backend-api/static
+      - media_volume:/home/backend-api/media
+    env_file:
+      - .env-localhost-api
+
+
+
+    depends_on:
+      - cache
+      - redis
+      - datastore
+
+  nginx:
+    build: nginx_localhost
+    environment:
+      - FQDN=localhost
+      - STATIC_DIR="/home/backend-api/static/"
+      - MEDIA_DIR="/home/backend-api/media/"
+
+    volumes:
+      - static_volume:/home/backend-api/static
+      - media_volume:/home/backend-api/media
+
+    ports:
+      - 80:80
+    depends_on:
+      - rest-api
+      - swagger-editor
+      - swagger-ui
+
+volumes:
+  static_volume:
+  media_volume:
+  datastore_volume:
+
+

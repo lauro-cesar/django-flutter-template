@@ -1,0 +1,221 @@
+openapi: 3.0.2
+info:
+  title: "Rest full  api specification"
+  version: "1.01"
+  description: "<p>SharedWAY REST-API</p>"
+  contact:
+    name: Lauro Cesar de Oliveira
+    url: https://github.com/sharedway/sharedway-api/
+    email: lauro@sharedway.aapp
+servers:
+  - url: http://localhost
+    description: Local development server
+tags:
+  - name: "Sign In"
+    description: "Create new account"
+  - name: "Account"
+    description: "Retrieve and edit your account"
+  - name: "Login"
+    description: "Request a Token"
+
+paths:
+  /api/accounts/signin/:
+    get:
+      operationId: retrieveCsrftoken
+      description: ""
+      responses:
+        "200":
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: csrftoken=tokenValue; Path=/; HttpOnly
+
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: 123
+          description: ""
+      tags:
+        - Sign In
+    post:
+      security:
+        - cookieAuth: []
+      operationId: createUser
+      description: ""
+      parameters:
+        - in: header
+          name: X-CSRFToken
+          schema:
+            type: string
+          required: true
+        - in: cookie
+          name: csrftoken
+          schema:
+            type: string
+            required:
+              - csrftoken
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+          description: ""
+      tags:
+        - Sign In
+
+  /api/accounts/{id}/:
+    get:
+      security:
+        - tokenAuth: []
+      operationId: retrieveUser
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this Usuario.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+          description: ""
+      tags:
+        - Account
+    put:
+      security:
+        - tokenAuth: []
+      operationId: updateUser
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this User.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+          description: ""
+      tags:
+        - Account
+    patch:
+      security:
+        - tokenAuth: []
+      operationId: partialUpdateUser
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A unique integer value identifying this Usuario.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+          description: ""
+      tags:
+        - Account
+  /api-token-auth/:
+    post:
+      operationId: createAuthToken
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthToken"
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthToken"
+          description: ""
+      tags:
+        - Login
+
+components:
+  securitySchemes:
+    tokenAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      description: "Authenticate at AuthToken to get a Token"
+    cookieAuth: # arbitrary name for the security scheme; will be used in the "security" key later
+      type: apiKey
+      in: cookie
+      name: csrftoken
+  schemas:
+    Account:
+      type: object
+      properties:
+        password:
+          type: string
+          writeOnly: true
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        id:
+          type: integer
+          readOnly: true
+      required:
+        - password
+        - username
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+        - username
+        - password
