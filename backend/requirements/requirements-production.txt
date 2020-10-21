@@ -14,3 +14,4 @@ channels
 channels_redis
 twilio
 django-leaflet
+celery

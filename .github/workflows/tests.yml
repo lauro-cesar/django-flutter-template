@@ -1,0 +1,32 @@
+name: Tests
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - uses: huaxk/postgis-action@v1
+        with:
+          postgresql version: "11" # See https://https://hub.docker.com/r/mdillon/postgis for available versions, if it is not specified, use the default value 'latest'
+          postgresql password: ${{ secrets.DATABASE_PASSWORD}} # This environment variable sets the superuser password for PostgreSQL, maybe string or secrets, the default superuser is defined by the input environment variable: postgresql user.
+          postgresql user: ${{ secrets.DATABASE_USER}} # This optional environment variable is used in conjunction with postgresql password to set a user and its password. This variable will create the specified user with superuser power and a database with the same name. If it is not specified, then the default user of 'postgres' will be used.
+          postgresql db: ${{ secrets.DATABASE_NAME}} # This optional environment variable can be used to define a different name for the default database that is created when the image is first started. If it is not specified, then the value of postgresql user will be used.
+
+      - name: SetUp Postgis
+        run: |
+          sudo apt-get update && sudo apt-get -y install binutils libgdal-dev libproj-dev gdal-bin postgis
+
+      - name: Install requirements
+        run: |
+          pip install -r backend/requirements.txt
+          pip install codecov
+
+      - name: Test Django
+        run: |
+          cd backend && python manage.py migrate && coverage run manage.py test
