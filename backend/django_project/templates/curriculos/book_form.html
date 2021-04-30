@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Book' %}{% endblock %}
+
+{% block content %}
+<h1>{{ object.title }}</h1>
+
+
+<form class="form-horizontal" method="post" 
+{% if 'create' in request.path %}
+  action="{% url 'books:create' %}"
+{% else %}
+  action="{% url 'books:update' object.isbn %}"
+{% endif %}>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">
+        {% if 'create' in request.path %}{% trans 'Create' %}{% else %}{% trans 'Update' %}{% endif %}
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock %}

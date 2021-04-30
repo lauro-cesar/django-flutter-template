@@ -1,0 +1,13 @@
+Django>=3.1
+reportlab
+psycopg2-binary
+django-filter
+requests
+python3-memcached
+gunicorn
+django-admin-tools
+uritemplate
+django-cors-headers
+celery[redis]
+redis
+Pillow

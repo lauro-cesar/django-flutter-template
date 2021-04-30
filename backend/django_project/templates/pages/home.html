@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+<div class="jumbotron">
+    <h1>{% blocktrans %}Welcome to Django Framework{% endblocktrans %}</h1>
+    <p>{% blocktrans %}Congratulations! You have successfully installed the Books CRUD App. You are currently running Django Framework.{% endblocktrans %}
+    <p><a class="btn btn-success btn-lg" href="https://github.com/django/django" target="_blank">{% blocktrans %}Fork Django on GitHub{% endblocktrans %} &raquo;</a></p>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% blocktrans %}Follow Development{% endblocktrans %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{% blocktrans %}Django is under active development...{% endblocktrans %}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% blocktrans %}Discover Modules{% endblocktrans %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{% blocktrans %}The community is working on...{% endblocktrans %}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% blocktrans %}Help &amp; Support{% endblocktrans %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{% blocktrans %}If you need any help or support while developing with Django, you may reach us via...{% endblocktrans %}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

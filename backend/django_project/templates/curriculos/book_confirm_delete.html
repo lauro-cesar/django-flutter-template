@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Book' %}: {% trans 'Delete' %}{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.title }}</h1>
+
+
+<form class="form-horizontal" method="post" action="{% url 'books:delete' object.isbn %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <p>{% trans 'Are you sure you want to delete the book?' %}</p>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">{% trans 'Yes, delete' %}</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
