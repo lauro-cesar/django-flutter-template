@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
     "django.localhost.hostcert.com.br",
     "[::1]",
 ]
+
 API_VERSION = 1
 
 ADMIN_TOOLS_INDEX_DASHBOARD = "project.dashboard.main.MainDashboard"
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 MIDDLEWARE = [
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.security.SecurityMiddleware",
