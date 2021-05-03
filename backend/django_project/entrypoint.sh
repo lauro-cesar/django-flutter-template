@@ -12,20 +12,10 @@ fi
 
 
 echo "Starting Django"
-python manage.py makemigrations accounts arquivos sites flatpages
+python manage.py makemigrations accounts sites flatpages
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --noinput
-
-
-# python manage.py inspectdb tb_user > arquivos/models/tb_user.py
-# python manage.py inspectdb tb_acquirer > arquivos/models/tb_acquirer.py
-# python manage.py inspectdb tb_core_acquirer > arquivos/models/tb_core_acquirer.py
-# python manage.py inspectdb tb_core_layout > arquivos/models/tb_core_layout.py
-# python manage.py inspectdb tb_core_van > arquivos/models/tb_core_van.py
-# python manage.py inspectdb tb_core_file_origin > arquivos/models/tb_core_file_origin.py
-# python manage.py inspectdb tb_core_file_origin_client > arquivos/models/tb_core_file_origin_client.py
-
 
 if test -f "initial_data.json"; then
     python manage.py loaddata initial_data.json --ignorenonexistent
