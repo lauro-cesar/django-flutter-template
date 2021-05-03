@@ -15,4 +15,4 @@ jobs:
         python -m pip install flake8
     - name: Lint with flake8
       run: |
-        flake8 backend/ --ignore=E501,F401
+        flake8 backend/django_project/ --ignore=E501,F401
