@@ -57,8 +57,6 @@ REST_FRAMEWORK = {
 }
 
 
-
-
 SITE_ID = 1
 
 ALLOWED_HOSTS = [
@@ -67,7 +65,6 @@ ALLOWED_HOSTS = [
     "django.localhost.hostcert.com.br",
     "[::1]",
 ]
-
 
 
 API_VERSION = 1

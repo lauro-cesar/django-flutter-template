@@ -6,18 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0007_auto_20210504_1844'),
+        ("app_settings", "0007_auto_20210504_1844"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='applanguagebaseentrymodel',
-            name='entry_description',
-            field=models.TextField(help_text='Explicação de onde essa string aparece', verbose_name='Onde encontro isso no app?'),
+            model_name="applanguagebaseentrymodel",
+            name="entry_description",
+            field=models.TextField(
+                help_text="Explicação de onde essa string aparece",
+                verbose_name="Onde encontro isso no app?",
+            ),
         ),
         migrations.AlterField(
-            model_name='applanguagebaseentrymodel',
-            name='entry_screenshot',
-            field=models.ImageField(blank=True, null=True, upload_to='', verbose_name='ScreenShot opcional'),
+            model_name="applanguagebaseentrymodel",
+            name="entry_screenshot",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="", verbose_name="ScreenShot opcional"
+            ),
         ),
     ]

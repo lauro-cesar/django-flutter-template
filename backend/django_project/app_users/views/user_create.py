@@ -22,15 +22,14 @@ from app_users.models import AppUserModel
 
 class AppUserCreateView(CreateView):
     """Create a new book."""
+
     model = AppUserModel
-    fields = ['nome','email','telefone','account_id']
+    fields = ["nome", "email", "telefone", "account_id"]
 
     def form_valid(self, form):
         messages.add_message(self.request, messages.INFO, form.instance.nome)
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.add_message(self.request, messages.INFO, 'The creation has failed')
+        messages.add_message(self.request, messages.INFO, "The creation has failed")
         return super().form_invalid(form)
-
-

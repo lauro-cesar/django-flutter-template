@@ -26,7 +26,11 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import action
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.authentication import (
+    SessionAuthentication,
+    BasicAuthentication,
+    TokenAuthentication,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from rest_framework_xml.parsers import XMLParser
@@ -35,9 +39,10 @@ from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from project.permissions import IsOwnerOrReadOnly
 import uuid
 
+
 class Index(View):
     def get(self, request):
-        return JsonResponse({'token': '{token}'.format(token=uuid.uuid4().hex)})
+        return JsonResponse({"token": "{token}".format(token=uuid.uuid4().hex)})
 
     def post(self, request):
-        return JsonResponse({'error': 'Please, fill all fields...'})
+        return JsonResponse({"error": "Please, fill all fields..."})

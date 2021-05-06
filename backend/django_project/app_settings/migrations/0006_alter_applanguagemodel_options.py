@@ -6,12 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0005_applanguagebaseentrymodel'),
+        ("app_settings", "0005_applanguagebaseentrymodel"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='applanguagemodel',
-            options={'ordering': ['created'], 'verbose_name': 'Idioma', 'verbose_name_plural': 'Idiomas'},
+            name="applanguagemodel",
+            options={
+                "ordering": ["created"],
+                "verbose_name": "Idioma",
+                "verbose_name_plural": "Idiomas",
+            },
         ),
     ]

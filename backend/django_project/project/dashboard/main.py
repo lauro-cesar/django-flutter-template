@@ -23,14 +23,21 @@ class MainDashboard(Dashboard):
         self.children.append(
             modules.ModelList(
                 title=_("Gerenciamento de notificações"),
-                models=["app_notifications.models.*","app_notifications.models.notification"],
+                models=[
+                    "app_notifications.models.*",
+                    "app_notifications.models.notification",
+                ],
             )
         )
 
         self.children.append(
             modules.ModelList(
                 title=_("Configurações do aplicativo"),
-                models=["app_settings.models.*","stripesettings.models.*","app_subscriptions.models.*"],
+                models=[
+                    "app_settings.models.*",
+                    "stripesettings.models.*",
+                    "app_subscriptions.models.*",
+                ],
             )
         )
 
@@ -39,7 +46,6 @@ class MainDashboard(Dashboard):
                 title=_("Relatórios de uso do aplicativo"),
                 models=["app_users.models.*"],
             )
-
         )
 
         self.children.append(

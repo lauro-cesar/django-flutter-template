@@ -16,7 +16,6 @@ from stripesettings.models import StripeSettingsModel
 @admin.register(StripeSettingsModel)
 class StripeSettingsModelAdmin(BaseModelAdmin):
     save_on_top = True
-    list_display = ["name","isDefaultSettings"]
+    list_display = ["name", "isDefaultSettings"]
     ordering = ["-created"]
-    exclude = ['']
-
+    exclude = [""]

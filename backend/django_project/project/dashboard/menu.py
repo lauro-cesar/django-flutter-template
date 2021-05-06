@@ -28,13 +28,12 @@ class MainMenu(Menu):
                         "Adicionar filme",
                         "/admin/movies/moviemodel/add/",
                     ),
-                      items.MenuItem(
+                    items.MenuItem(
                         "Adicionar genero",
                         "/admin/movies/genremodel/add/",
                     ),
                 ],
             ),
-
         ]
 
     def init_with_context(self, context):

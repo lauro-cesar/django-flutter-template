@@ -4,6 +4,7 @@ from channels.generic.websocket import WebsocketConsumer
 from channels.generic.websocket import AsyncWebsocketConsumer
 import project
 
+
 class Hello(project.BaseConsumer):
     async def disconnect(self, close_code):
         pass

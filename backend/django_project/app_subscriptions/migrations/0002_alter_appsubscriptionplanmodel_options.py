@@ -6,12 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_subscriptions', '0001_initial'),
+        ("app_subscriptions", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='appsubscriptionplanmodel',
-            options={'ordering': ['created'], 'verbose_name': 'Plano de assinatura', 'verbose_name_plural': 'Planos de assinaturas'},
+            name="appsubscriptionplanmodel",
+            options={
+                "ordering": ["created"],
+                "verbose_name": "Plano de assinatura",
+                "verbose_name_plural": "Planos de assinaturas",
+            },
         ),
     ]

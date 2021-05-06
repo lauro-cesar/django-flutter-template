@@ -6,9 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from django import forms
 
 
-
-
-
 class User(AbstractUser):
     dateCreated = models.DateTimeField(
         auto_now=True, verbose_name=_("Data  de registro")
@@ -37,7 +34,6 @@ class User(AbstractUser):
     sms = models.BooleanField(default=True, blank=True)
     autoAccount = models.BooleanField(default=False, blank=True)
     testUser = models.BooleanField(default=False, blank=True)
-
 
     @property
     def notificationToken(self):

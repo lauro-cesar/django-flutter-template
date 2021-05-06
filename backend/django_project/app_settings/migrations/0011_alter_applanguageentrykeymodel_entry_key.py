@@ -6,13 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0010_auto_20210504_2016'),
+        ("app_settings", "0010_auto_20210504_2016"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='applanguageentrykeymodel',
-            name='entry_key',
-            field=models.CharField(help_text='Deixe em branco para auto criar', max_length=255, verbose_name='ID único'),
+            model_name="applanguageentrykeymodel",
+            name="entry_key",
+            field=models.CharField(
+                help_text="Deixe em branco para auto criar",
+                max_length=255,
+                verbose_name="ID único",
+            ),
         ),
     ]

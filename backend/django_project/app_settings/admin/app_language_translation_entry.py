@@ -1,6 +1,3 @@
-
-
-
 """[summary]
 
 [description]
@@ -18,9 +15,9 @@ from django.db import models
 
 class AdminTextareaWidgetMine(forms.Textarea):
     def __init__(self, attrs=None):
-        super().__init__(attrs={'class': 'vLargeTextField', 'rows':'4', **(attrs or {})})
-
-
+        super().__init__(
+            attrs={"class": "vLargeTextField", "rows": "4", **(attrs or {})}
+        )
 
 
 @admin.register(AppLanguageTranslationEntryModel)
@@ -30,10 +27,7 @@ class AppLanguageTranslationEntryModelAdmin(BaseModelAdmin):
     ordering = ["-created"]
     exclude = ["isPublic", "isActive"]
 
-    formfield_overrides = {
-    models.TextField: {'widget': AdminTextareaWidgetMine}
-    }
-
+    formfield_overrides = {models.TextField: {"widget": AdminTextareaWidgetMine}}
 
     def flag_icon(self, obj):
         if obj.entry_language.language_icon:

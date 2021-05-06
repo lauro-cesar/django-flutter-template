@@ -10,6 +10,6 @@ from project.admin import BaseModelAdmin
 
 @admin.register(AppSubscriptionPlanModel)
 class AppSubscriptionPlanModelAdmin(BaseModelAdmin):
-  save_on_top = True
-  list_display = ['label','created']
-  ordering = ['-created']
+    save_on_top = True
+    list_display = ["label", "created"]
+    ordering = ["-created"]

@@ -14,20 +14,18 @@ from app_settings.models import AppLanguageEntryKeyModel
 from django import forms
 from django.db import models
 
+
 class AdminTextareaWidgetMine(forms.Textarea):
     def __init__(self, attrs=None):
-        super().__init__(attrs={'class': 'vLargeTextField', 'rows':'2', **(attrs or {})})
-
+        super().__init__(
+            attrs={"class": "vLargeTextField", "rows": "2", **(attrs or {})}
+        )
 
 
 class AppLanguageEntryKeyModelAdminInline(admin.TabularInline):
     model = AppLanguageEntryKeyModel
     exclude = ["isPublic", "isActive"]
-    formfield_overrides = {
-        models.TextField: {'widget': AdminTextareaWidgetMine}
-    }
-
-
+    formfield_overrides = {models.TextField: {"widget": AdminTextareaWidgetMine}}
 
 
 @admin.register(AppLanguageModel)
@@ -38,11 +36,7 @@ class AppLanguageModelAdmin(BaseModelAdmin):
     ordering = ["-created"]
     exclude = ["isPublic", "isActive"]
 
-
-    inlines= [
-    AppLanguageEntryKeyModelAdminInline
-    ]
-
+    inlines = [AppLanguageEntryKeyModelAdminInline]
 
     def flag_icon(self, obj):
         if obj.language_icon:

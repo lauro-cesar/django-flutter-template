@@ -9,13 +9,12 @@ from project.models import BaseModel, StackedModel
 # LANGUAGES = [("pt-br", "Português")]
 
 
-
-
 class AppLanguageModel(BaseModel):
     language_name = models.CharField(verbose_name="Nome da linguagem", max_length=255)
     language_code = models.CharField(verbose_name="Código da linguagem", max_length=8)
-    language_icon = models.ImageField(upload_to="icons/languages/", blank=True, null=True)
-
+    language_icon = models.ImageField(
+        upload_to="icons/languages/", blank=True, null=True
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = _("Idioma")

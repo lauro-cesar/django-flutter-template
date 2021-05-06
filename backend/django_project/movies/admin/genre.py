@@ -10,7 +10,6 @@ from project.admin import BaseModelAdmin
 
 @admin.register(GenreModel)
 class GenreModelAdmin(BaseModelAdmin):
-  save_on_top = True
-  list_display = ['name','created']
-  ordering = ['-created']
-
+    save_on_top = True
+    list_display = ["name", "created"]
+    ordering = ["-created"]

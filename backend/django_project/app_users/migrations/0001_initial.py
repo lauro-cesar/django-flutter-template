@@ -15,39 +15,101 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='AppUserModel',
+            name="AppUserModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('cliente', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='clientes', to=settings.AUTH_USER_MODEL, verbose_name='Usuario')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "cliente",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="clientes",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Usuario",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Registro de cliente',
-                'verbose_name_plural': 'Registro de clientes',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Registro de cliente",
+                "verbose_name_plural": "Registro de clientes",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='AppDeviceModel',
+            name="AppDeviceModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('deviceID', models.CharField(max_length=512, verbose_name='ID do telefone')),
-                ('notification_token', models.CharField(default='none', max_length=512, verbose_name='Token de notificacao')),
-                ('usuario', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='devices', to='app_users.appusermodel', verbose_name='Usuário do telefone')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "deviceID",
+                    models.CharField(max_length=512, verbose_name="ID do telefone"),
+                ),
+                (
+                    "notification_token",
+                    models.CharField(
+                        default="none",
+                        max_length=512,
+                        verbose_name="Token de notificacao",
+                    ),
+                ),
+                (
+                    "usuario",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="devices",
+                        to="app_users.appusermodel",
+                        verbose_name="Usuário do telefone",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Registro de instalação',
-                'verbose_name_plural': 'Registros de instalações',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Registro de instalação",
+                "verbose_name_plural": "Registros de instalações",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
     ]

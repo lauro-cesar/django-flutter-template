@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 """
 'addClassCleanup','addCleanup','addTypeEqualityFunc','assertAlmostEqual',
 'assertAlmostEquals','assertContains','assertCountEqual','assertDictContainsSubset','assertDictEqual','assertEqual','assertEquals','assertFalse','assertFieldOutput',

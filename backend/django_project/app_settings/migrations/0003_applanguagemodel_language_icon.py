@@ -6,13 +6,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0002_auto_20210504_0007'),
+        ("app_settings", "0002_auto_20210504_0007"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='applanguagemodel',
-            name='language_icon',
-            field=models.ImageField(blank=True, null=True, upload_to='icons/languages/'),
+            model_name="applanguagemodel",
+            name="language_icon",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="icons/languages/"
+            ),
         ),
     ]

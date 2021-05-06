@@ -11,16 +11,19 @@ from project.models import BaseModel, StackedModel
 
 
 class AppSubscriptionPlanModel(BaseModel):
-    label = models.CharField(max_length=256,verbose_name=_("Nome do plano"))
+    label = models.CharField(max_length=256, verbose_name=_("Nome do plano"))
     description = models.TextField(verbose_name=_("Descrição do plano"))
 
-    plan_price = models.DecimalField(default=00000, decimal_places=2, max_digits=8,verbose_name=_("Valor do plano"))
+    plan_price = models.DecimalField(
+        default=00000, decimal_places=2, max_digits=8, verbose_name=_("Valor do plano")
+    )
 
     due_on_day_of_the_month = models.SmallIntegerField(
-       verbose_name=_("Dia do vencimento"))
+        verbose_name=_("Dia do vencimento")
+    )
     invoince_on_day_of_the_month = models.SmallIntegerField(
-       verbose_name=_("Dia do envio da fatura"))
-
+        verbose_name=_("Dia do envio da fatura")
+    )
 
     class Meta(BaseModel.Meta):
         verbose_name = _("Plano de assinatura")

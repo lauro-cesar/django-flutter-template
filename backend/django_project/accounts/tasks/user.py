@@ -2,6 +2,7 @@ from celery import shared_task
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 import logging
+
 logger = logging.getLogger(__name__)
 
 

@@ -10,7 +10,6 @@ from project.admin import BaseModelAdmin
 
 @admin.register(MovieModel)
 class MovieModelAdmin(BaseModelAdmin):
-  save_on_top = True
-  list_display = ['title','created']
-  ordering = ['-created']
-
+    save_on_top = True
+    list_display = ["title", "created"]
+    ordering = ["-created"]

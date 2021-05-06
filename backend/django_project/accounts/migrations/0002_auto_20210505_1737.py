@@ -6,59 +6,65 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0001_initial'),
+        ("accounts", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='autoAccount',
+            model_name="user",
+            name="autoAccount",
             field=models.BooleanField(blank=True, default=False),
         ),
         migrations.AddField(
-            model_name='user',
-            name='countryCode',
-            field=models.CharField(blank=True, default='55', max_length=155, verbose_name='Codigo do pais'),
+            model_name="user",
+            name="countryCode",
+            field=models.CharField(
+                blank=True, default="55", max_length=155, verbose_name="Codigo do pais"
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='localAreaCode',
-            field=models.CharField(blank=True, default='', max_length=155, verbose_name='DDD'),
+            model_name="user",
+            name="localAreaCode",
+            field=models.CharField(
+                blank=True, default="", max_length=155, verbose_name="DDD"
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='news_letter',
+            model_name="user",
+            name="news_letter",
             field=models.BooleanField(blank=True, default=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='notifications',
+            model_name="user",
+            name="notifications",
             field=models.BooleanField(blank=True, default=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='phoneNumber',
-            field=models.CharField(blank=True, default='', max_length=155, verbose_name='Telefone'),
+            model_name="user",
+            name="phoneNumber",
+            field=models.CharField(
+                blank=True, default="", max_length=155, verbose_name="Telefone"
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='profile_image',
-            field=models.FileField(default='core/smalllogo.png', upload_to='avatars/'),
+            model_name="user",
+            name="profile_image",
+            field=models.FileField(default="core/smalllogo.png", upload_to="avatars/"),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='user',
-            name='sms',
+            model_name="user",
+            name="sms",
             field=models.BooleanField(blank=True, default=True),
         ),
         migrations.AddField(
-            model_name='user',
-            name='testUser',
+            model_name="user",
+            name="testUser",
             field=models.BooleanField(blank=True, default=False),
         ),
         migrations.AddField(
-            model_name='user',
-            name='validEmail',
+            model_name="user",
+            name="validEmail",
             field=models.BooleanField(default=False),
         ),
     ]

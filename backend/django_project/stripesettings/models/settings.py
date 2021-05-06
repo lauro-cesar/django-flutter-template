@@ -16,11 +16,15 @@ class StripeSettingsModel(BaseModel):
     Extends:
         BaseModel
     """
-    name = models.CharField(max_length=144, verbose_name=_("Nome da configuração"))
-    publicKey = models.CharField(max_length=512,default="",verbose_name=_("Stripe Public Key"))
-    privateKey = models.CharField(max_length=512,default="",verbose_name=_("Stripe Private Key"))
-    isDefaultSettings = models.BooleanField(default=False,unique=True)
 
+    name = models.CharField(max_length=144, verbose_name=_("Nome da configuração"))
+    publicKey = models.CharField(
+        max_length=512, default="", verbose_name=_("Stripe Public Key")
+    )
+    privateKey = models.CharField(
+        max_length=512, default="", verbose_name=_("Stripe Private Key")
+    )
+    isDefaultSettings = models.BooleanField(default=False, unique=True)
 
     class Meta(BaseModel.Meta):
         verbose_name = _("Conta Stripe")

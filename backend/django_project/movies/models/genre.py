@@ -11,7 +11,7 @@ from project.models import BaseModel, StackedModel
 
 
 class GenreModel(BaseModel):
-    name = models.CharField(max_length=512,verbose_name=_("Titulo"))
+    name = models.CharField(max_length=512, verbose_name=_("Titulo"))
     slug = models.SlugField()
 
     class Meta(BaseModel.Meta):
@@ -20,4 +20,3 @@ class GenreModel(BaseModel):
 
     def __str__(self):
         return self.name
-

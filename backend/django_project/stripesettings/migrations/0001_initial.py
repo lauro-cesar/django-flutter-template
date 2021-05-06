@@ -7,28 +7,58 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='StripeSettingsModel',
+            name="StripeSettingsModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('name', models.CharField(max_length=144, verbose_name='Nome da configuração')),
-                ('publicKey', models.CharField(default='', max_length=512, verbose_name='Stripe Public Key')),
-                ('privateKey', models.CharField(default='', max_length=512, verbose_name='Stripe Private Key')),
-                ('isDefaultSettings', models.BooleanField(default=False, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=144, verbose_name="Nome da configuração"
+                    ),
+                ),
+                (
+                    "publicKey",
+                    models.CharField(
+                        default="", max_length=512, verbose_name="Stripe Public Key"
+                    ),
+                ),
+                (
+                    "privateKey",
+                    models.CharField(
+                        default="", max_length=512, verbose_name="Stripe Private Key"
+                    ),
+                ),
+                ("isDefaultSettings", models.BooleanField(default=False, unique=True)),
             ],
             options={
-                'verbose_name': 'Conta Stripe',
-                'verbose_name_plural': 'Contas Stripe',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Conta Stripe",
+                "verbose_name_plural": "Contas Stripe",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
     ]

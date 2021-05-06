@@ -10,21 +10,16 @@ import base64
 from project.models import BaseModel, StackedModel
 
 
-    # this.profile_image,
-    # this.token,
-    # this.user_email,
-    # this.user_id,
-    # this.user_nicename,
-    # this.plan,
-    # this.username,
-
+# this.profile_image,
+# this.token,
+# this.user_email,
+# this.user_id,
+# this.user_nicename,
+# this.plan,
+# this.username,
 
 
 class AppUserModel(BaseModel):
-
-
-
-
     @property
     def last_name(self):
         return self.cliente.last_name

@@ -7,9 +7,9 @@ from project.models import BaseModel, StackedModel
 
 
 class Model(BaseModel):
-
     class Meta(BaseModel.Meta):
         verbose_name = _("Name")
         verbose_name_plural = _("Names")
+
     def __str__(self):
         return self.label

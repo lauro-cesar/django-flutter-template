@@ -11,10 +11,4 @@ User = get_user_model()
 class UserAdmin(UserAdmin):
     save_on_top = True
     list_filter = ["is_superuser"]
-    list_display = [
-        "username",
-        "first_name",
-        "last_name",
-        "email",
-        "profile_image"
-    ]
+    list_display = ["username", "first_name", "last_name", "email", "profile_image"]

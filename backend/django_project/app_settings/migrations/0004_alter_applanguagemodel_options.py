@@ -6,12 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0003_applanguagemodel_language_icon'),
+        ("app_settings", "0003_applanguagemodel_language_icon"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='applanguagemodel',
-            options={'ordering': ['created'], 'verbose_name': 'Tradução', 'verbose_name_plural': 'Traduções'},
+            name="applanguagemodel",
+            options={
+                "ordering": ["created"],
+                "verbose_name": "Tradução",
+                "verbose_name_plural": "Traduções",
+            },
         ),
     ]

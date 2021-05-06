@@ -51,6 +51,6 @@ class MovieModelViewSet(viewsets.ModelViewSet):
     pagination_class = MoviesPagination
 
     def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
+        if getattr(self, "swagger_fake_view", False):
             # queryset just for schema generation metadata
             return Activity.objects.none()

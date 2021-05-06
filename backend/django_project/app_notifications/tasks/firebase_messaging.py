@@ -14,6 +14,7 @@ import uuid
 from io import BytesIO
 import json
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,4 +36,3 @@ def dispatchNotification(notificationID):
         notification.response = "/n/t/r".join(responses)
         notification.processed = True
         notification.save()
-

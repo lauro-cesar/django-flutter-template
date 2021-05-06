@@ -7,29 +7,56 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AppSubscriptionPlanModel',
+            name="AppSubscriptionPlanModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('label', models.CharField(max_length=256, verbose_name='Nome do plano')),
-                ('description', models.TextField(verbose_name='Descrição do plano')),
-                ('plan_price', models.DecimalField(decimal_places=2, default=0, max_digits=8)),
-                ('due_on_day_of_the_month', models.SmallIntegerField(verbose_name='Dia do vencimento')),
-                ('invoince_on_day_of_the_month', models.SmallIntegerField(verbose_name='Dia do envio da fatura')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "label",
+                    models.CharField(max_length=256, verbose_name="Nome do plano"),
+                ),
+                ("description", models.TextField(verbose_name="Descrição do plano")),
+                (
+                    "plan_price",
+                    models.DecimalField(decimal_places=2, default=0, max_digits=8),
+                ),
+                (
+                    "due_on_day_of_the_month",
+                    models.SmallIntegerField(verbose_name="Dia do vencimento"),
+                ),
+                (
+                    "invoince_on_day_of_the_month",
+                    models.SmallIntegerField(verbose_name="Dia do envio da fatura"),
+                ),
             ],
             options={
-                'verbose_name': 'Name',
-                'verbose_name_plural': 'Names',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Name",
+                "verbose_name_plural": "Names",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
     ]

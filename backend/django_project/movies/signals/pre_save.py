@@ -2,7 +2,15 @@
 
 [description]
 """
-from django.db.models.signals import pre_save, post_save, pre_init, post_init, pre_delete, post_delete, m2m_changed
+from django.db.models.signals import (
+    pre_save,
+    post_save,
+    pre_init,
+    post_init,
+    pre_delete,
+    post_delete,
+    m2m_changed,
+)
 import qrcode
 import hashlib
 from django.dispatch import receiver
@@ -24,17 +32,21 @@ def PostInit(sender, instance):
 def PreSave(sender, instance, raw, using, update_fields):
     pass
 
+
 @receiver(post_save, sender=Model)
 def PostSave(sender, instance, created, using, update_fields):
     pass
+
 
 @receiver(pre_delete, sender=Model)
 def PreDelete(sender, instance, using):
     pass
 
+
 @receiver(post_delete, sender=Model)
 def PostDelete(sender, instance, using):
     pass
+
 
 @receiver(m2m_changed, sender=Model)
 def M2MChanged(sender, instance, action, reverse, model, pk_set, using):

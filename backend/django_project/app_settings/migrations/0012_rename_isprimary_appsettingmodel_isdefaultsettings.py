@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_settings', '0011_alter_applanguageentrykeymodel_entry_key'),
+        ("app_settings", "0011_alter_applanguageentrykeymodel_entry_key"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='appsettingmodel',
-            old_name='isPrimary',
-            new_name='isDefaultSettings',
+            model_name="appsettingmodel",
+            old_name="isPrimary",
+            new_name="isDefaultSettings",
         ),
     ]

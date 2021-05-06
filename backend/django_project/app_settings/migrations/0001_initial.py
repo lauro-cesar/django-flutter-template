@@ -7,28 +7,65 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AppSettingModel',
+            name="AppSettingModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('isPrimary', models.BooleanField(default=False, verbose_name='Configuração principal')),
-                ('terms_of_use_url', models.CharField(default='/', max_length=512, verbose_name='Termos de uso')),
-                ('privacy_police_url', models.CharField(default='/', max_length=512, verbose_name='Politica de privacidade')),
-                ('label', models.CharField(max_length=255, verbose_name='Nome das configurações')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "isPrimary",
+                    models.BooleanField(
+                        default=False, verbose_name="Configuração principal"
+                    ),
+                ),
+                (
+                    "terms_of_use_url",
+                    models.CharField(
+                        default="/", max_length=512, verbose_name="Termos de uso"
+                    ),
+                ),
+                (
+                    "privacy_police_url",
+                    models.CharField(
+                        default="/",
+                        max_length=512,
+                        verbose_name="Politica de privacidade",
+                    ),
+                ),
+                (
+                    "label",
+                    models.CharField(
+                        max_length=255, verbose_name="Nome das configurações"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Configuração',
-                'verbose_name_plural': 'Configurações',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Configuração",
+                "verbose_name_plural": "Configurações",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
     ]

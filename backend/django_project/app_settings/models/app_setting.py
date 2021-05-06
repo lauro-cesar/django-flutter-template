@@ -20,7 +20,6 @@ class AppSettingModel(BaseModel):
 
     languages = models.ManyToManyField("app_settings.AppLanguageModel")
 
-
     @property
     def p(self):
         return self.privacy_police_url

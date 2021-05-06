@@ -7,47 +7,105 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AppNotificationTopicModel',
+            name="AppNotificationTopicModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('name', models.CharField(default='ofertas', max_length=255, verbose_name='Name')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "name",
+                    models.CharField(
+                        default="ofertas", max_length=255, verbose_name="Name"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Tópico',
-                'verbose_name_plural': 'Tópicos',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Tópico",
+                "verbose_name_plural": "Tópicos",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
         migrations.CreateModel(
-            name='AppNotificationModel',
+            name="AppNotificationModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now=True, verbose_name='Data de criação')),
-                ('lastModified', models.DateTimeField(auto_now=True, verbose_name='Última modificacao')),
-                ('isActive', models.BooleanField(default=True)),
-                ('isPublic', models.BooleanField(default=False)),
-                ('title', models.CharField(default='titulo', max_length=255, verbose_name='Title ')),
-                ('body', models.CharField(default='mensagem', max_length=255, verbose_name='Mensagem ')),
-                ('name', models.CharField(default='nome', max_length=255, verbose_name='Name ')),
-                ('response', models.TextField(blank=True)),
-                ('processed', models.BooleanField(default=False)),
-                ('topics', models.ManyToManyField(related_name='notifications', to='app_notifications.AppNotificationTopicModel', verbose_name='Topicos')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now=True, verbose_name="Data de criação"),
+                ),
+                (
+                    "lastModified",
+                    models.DateTimeField(
+                        auto_now=True, verbose_name="Última modificacao"
+                    ),
+                ),
+                ("isActive", models.BooleanField(default=True)),
+                ("isPublic", models.BooleanField(default=False)),
+                (
+                    "title",
+                    models.CharField(
+                        default="titulo", max_length=255, verbose_name="Title "
+                    ),
+                ),
+                (
+                    "body",
+                    models.CharField(
+                        default="mensagem", max_length=255, verbose_name="Mensagem "
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        default="nome", max_length=255, verbose_name="Name "
+                    ),
+                ),
+                ("response", models.TextField(blank=True)),
+                ("processed", models.BooleanField(default=False)),
+                (
+                    "topics",
+                    models.ManyToManyField(
+                        related_name="notifications",
+                        to="app_notifications.AppNotificationTopicModel",
+                        verbose_name="Topicos",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Notificação',
-                'verbose_name_plural': 'Notificações',
-                'ordering': ['created'],
-                'abstract': False,
+                "verbose_name": "Notificação",
+                "verbose_name_plural": "Notificações",
+                "ordering": ["created"],
+                "abstract": False,
             },
         ),
     ]

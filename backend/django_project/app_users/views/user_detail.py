@@ -19,11 +19,16 @@ from django.urls import reverse_lazy
 from django.urls import reverse
 from app_users.models import AppUserModel
 
+
 class AppUserDetailView(DetailView):
     """Show the requested book."""
+
     model = AppUserModel
-    def get_object(self,*args, **kwargs):
-        return self.model.objects.filter(account_id=kwargs.get('account_id',None)).first()
+
+    def get_object(self, *args, **kwargs):
+        return self.model.objects.filter(
+            account_id=kwargs.get("account_id", None)
+        ).first()
 
     def dispatch(self, *args, **kwargs):
         if self.get_object() is None:

@@ -6,6 +6,7 @@ from project.celery import app
 
 import logging
 
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def postSaveUser(sender, instance=None, created=False, **kwargs):
     if created:
