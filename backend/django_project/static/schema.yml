@@ -1,0 +1,187 @@
+openapi: 3.0.2
+info:
+  title: "Rest full api specification"
+  version: "1.01"
+  description: "<p>GoTV RestFULL Resources</p>"
+  contact:
+    name: Lauro Cesar de Oliveira
+    url: https://www.sharedway.app
+    email: lauro@sharedway.app
+servers:
+  - url: https://django.localhost.hostcert.com.br
+    description: Https local django server
+tags:
+  - name: "Sign In"
+    description: "Create new account"
+  - name: "Account"
+    description: "Retrieve and edit your account"
+  - name: "Login"
+    description: "Request a Token"
+
+paths:
+  /rest-api/public/movies/:
+    get:
+      operationId: listMovieModels
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MovieModel'
+          description: ''
+      tags:
+      - rest-api
+    post:
+      operationId: createMovieModel
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieModel'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieModel'
+          description: ''
+      tags:
+      - rest-api
+  /rest-api/public/movies/{id}/:
+    get:
+      operationId: retrieveMovieModel
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieModel'
+          description: ''
+      tags:
+      - rest-api
+    put:
+      operationId: updateMovieModel
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieModel'
+          description: ''
+      tags:
+      - rest-api
+    patch:
+      operationId: partialUpdateMovieModel
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MovieModel'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieModel'
+          description: ''
+      tags:
+      - rest-api
+    delete:
+      operationId: destroyMovieModel
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - rest-api
+components:
+  schemas:
+    MovieModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        genres:
+          type: array
+          items:
+            type: integer
+        title:
+          type: string
+          maxLength: 512
+        description:
+          type: string
+      required:
+      - genres
+      - title
+      - description

@@ -12,18 +12,27 @@ fi
 
 
 echo "Starting Django"
-python manage.py makemigrations accounts sites flatpages
+python manage.py makemigrations accounts app_settings app_users sites flatpages
 python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --noinput
 
-if test -f "initial_data.json"; then
-    python manage.py loaddata initial_data.json --ignorenonexistent
+
+
+if test -f "initial_data/accounts.json"; then
+    python manage.py loaddata initial_data/accounts.json --ignorenonexistent
 fi
 
-if test -f "auth.json"; then
-    python manage.py loaddata auth.json --ignorenonexistent
+
+if test -f "initial_data/sites.json"; then
+    python manage.py loaddata initial_data/sites.json --ignorenonexistent
 fi
+
+
+if test -f "initial_data/flatpages.json"; then
+    python manage.py loaddata initial_data/flatpages.json --ignorenonexistent
+fi
+
 
 screen -wipe
 screen -dmS queue celery -b redis://$REDIS_HOST:6379 -A project worker -B -E

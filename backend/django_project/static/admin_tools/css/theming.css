@@ -1,6 +1,6 @@
-/** 
+/**
  * theming styles
- * 
+ *
  */
 
 #content {
@@ -9,7 +9,7 @@
 }
 
 #header {
-    background: #205067;
+    background: #333333;
 
     /* Reset the indents of django-flat-theme
       (need to restore 40px on branding+user-tools instead) */

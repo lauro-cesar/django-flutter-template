@@ -1,0 +1,15 @@
+Olá corretor!
+
+O cliente {{cliente.nome}} gostaria de mais informações sobre o imóvel de código: {{imovel.codigo}}.
+
+Dados do cliente:
+
+Nome: {{cliente.nome}}
+
+Email: {{cliente.email}}
+
+Telefone: {{cliente.telefone}}
+
+Código do imóvel: {{imovel.codigo}}
+
+Atenciosamente, Email Bot.

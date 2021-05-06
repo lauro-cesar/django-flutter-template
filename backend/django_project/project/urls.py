@@ -5,5 +5,13 @@ from django.urls import path, include, re_path
 urlpatterns = [
     re_path(r"^admin_tools/", include("admin_tools.urls")),
     path("admin/", admin.site.urls),
+    path(
+        "rest-api/public/",
+        include(
+            [
+                path("", include("movies.rest_urls")),
+            ]
+        ),
+    ),
     path("", include("django.contrib.flatpages.urls")),
 ]

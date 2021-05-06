@@ -2,10 +2,14 @@
 """
 from celery.schedules import crontab
 import os
+import firebase_admin
+from firebase_admin import credentials
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUTH_USER_MODEL = "accounts.User"
+
+FIREBASE_APP = firebase_admin.initialize_app()
 
 redis_host = os.environ.get("REDIS_HOST", default="localhost")
 cache_host = os.environ.get("CACHE_HOST", default="localhost")
@@ -27,6 +31,34 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
 TIME_ZONE = "America/Sao_Paulo"
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework_xml.parsers.XMLParser",
+    ],
+    # "EXCEPTION_HANDLER": "server.exception_handler.custom_exception_handler",
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {"anon": "1000/day", "user": "10000/day"},
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_PAGINATION_CLASS": "project.pagination.FlutterPagination",
+    "PAGE_SIZE": 50,
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
+
+
+
+
 SITE_ID = 1
 
 ALLOWED_HOSTS = [
@@ -35,6 +67,8 @@ ALLOWED_HOSTS = [
     "django.localhost.hostcert.com.br",
     "[::1]",
 ]
+
+
 
 API_VERSION = 1
 
@@ -45,11 +79,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 APPEND_SLASH = True
 INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
+    "app_users.apps.AppUsersConfig",
+    "app_settings.apps.AppSettingsConfig",
+    "app_notifications.apps.AppNotificationsConfig",
+    "app_subscriptions.apps.AppSubscriptionsConfig",
+    "stripesettings.apps.StripesettingsConfig",
+    "movies.apps.MoviesConfig",
     "admin_tools",
     "admin_tools.theming",
     "admin_tools.menu",
     "admin_tools.dashboard",
     "project.apps.ProjectConfig",
+    "rest_framework",
+    "rest_framework.authtoken",
     "django_filters",
     "django.contrib.contenttypes",
     "django.contrib.auth",

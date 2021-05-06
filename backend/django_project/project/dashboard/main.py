@@ -9,10 +9,46 @@ class MainDashboard(Dashboard):
     Custom index dashboard for backend.
     """
 
-    columns = 2
+    columns = 3
     title = ""
 
     def init_with_context(self, context):
+        self.children.append(
+            modules.ModelList(
+                title=_("Gerenciamento do catalogo"),
+                models=["movies.models.*"],
+            )
+        )
+
+        self.children.append(
+            modules.ModelList(
+                title=_("Gerenciamento de notificações"),
+                models=["app_notifications.models.*","app_notifications.models.notification"],
+            )
+        )
+
+        self.children.append(
+            modules.ModelList(
+                title=_("Configurações do aplicativo"),
+                models=["app_settings.models.*","stripesettings.models.*","app_subscriptions.models.*"],
+            )
+        )
+
+        self.children.append(
+            modules.ModelList(
+                title=_("Relatórios de uso do aplicativo"),
+                models=["app_users.models.*"],
+            )
+
+        )
+
+        self.children.append(
+            modules.ModelList(
+                title=_("Frontend"),
+                models=["django.contrib.sites.*", "django.contrib.flatpages.*"],
+            )
+        )
+
         self.children.append(
             modules.ModelList(
                 title=_("Users and groups"),
@@ -22,7 +58,6 @@ class MainDashboard(Dashboard):
                 ],
             )
         )
-
         self.children.append(
             modules.LinkList(
                 _("Support"),
