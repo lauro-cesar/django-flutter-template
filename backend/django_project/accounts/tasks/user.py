@@ -2,9 +2,7 @@ from celery import shared_task
 from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 import logging
-
 logger = logging.getLogger(__name__)
-
 
 User = get_user_model()
 
@@ -18,11 +16,11 @@ def createOrUpdateAppUser(accountID=None):
 
 
 @shared_task(name="createToken", max_retries=3, soft_time_limit=20)
-def createToken(self):
+def createToken(accountID=None):
     """ """
     accountUser = User.objects.get(pk=accountID)
     if accountUser:
-        Token.objects.create(user=instance)
+        Token.objects.create(user=accountUser)
         logger.info("Creating user Token")
 
 

@@ -18,6 +18,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 from django.urls import reverse
 from app_users.models import AppUserModel
+from app_users.views import AppUserDetailView
 
 
 class AppUserUpdateView(UpdateView):
@@ -43,7 +44,7 @@ class AppUserUpdateView(UpdateView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         if self.get_object() is None:
-            return BookListView.as_view()(request=self.request)
+            return AppUserDetailView.as_view()(request=self.request)
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

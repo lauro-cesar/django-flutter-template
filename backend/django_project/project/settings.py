@@ -81,7 +81,6 @@ INSTALLED_APPS = [
     "app_notifications.apps.AppNotificationsConfig",
     "app_subscriptions.apps.AppSubscriptionsConfig",
     "stripesettings.apps.StripesettingsConfig",
-    "movies.apps.MoviesConfig",
     "admin_tools",
     "admin_tools.theming",
     "admin_tools.menu",
