@@ -1,8 +1,5 @@
 #!/bin/bash
-export PROJECT_DIR=django_project
-export DOCKER_PROJECT_DIR=django_docker
-export DOCKER_NAME=django_project_template
-export SERVICE_NAME=django_project_template
+for l in $(cat .env-project.yaml); do export "$l"; done
 for l in $(cat .env-db.yaml); do export "$l"; done
 for l in $(cat .env-api.yaml); do export "$l"; done
 for l in $(cat .env-common.yaml); do export "$l"; done

@@ -15,3 +15,4 @@ firebase_admin
 djangorestframework-xml
 djangorestframework
 stripe
+dj-stripe
