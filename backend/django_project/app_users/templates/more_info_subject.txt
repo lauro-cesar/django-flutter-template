@@ -1,3 +1,0 @@
-{% load i18n %}{% autoescape off %}
-{% blocktranslate %}Pedido de maiores informações{% endblocktranslate %}
-{% endautoescape %}

@@ -15,7 +15,7 @@ redis_host = os.environ.get("REDIS_HOST", default="localhost")
 cache_host = os.environ.get("CACHE_HOST", default="localhost")
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
-    default="_3652a8d6-a236-11eb-b212-bb20f70a49ee_3bd4fd18-a236-11eb-9a39-bf3d226f8b08_",
+    default="_fake_key_",
 )
 DEBUG = int(os.environ.get("DEBUG", default=1))
 
@@ -74,13 +74,8 @@ ADMIN_TOOLS_APP_INDEX_DASHBOARD = "project.dashboard.main.MainAppIndexDashboard"
 ADMIN_TOOLS_MENU = "project.dashboard.menu.MainMenu"
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 APPEND_SLASH = True
+
 INSTALLED_APPS = [
-    "accounts.apps.AccountsConfig",
-    "app_users.apps.AppUsersConfig",
-    "app_settings.apps.AppSettingsConfig",
-    "app_notifications.apps.AppNotificationsConfig",
-    "app_subscriptions.apps.AppSubscriptionsConfig",
-    "stripesettings.apps.StripesettingsConfig",
     "admin_tools",
     "admin_tools.theming",
     "admin_tools.menu",
