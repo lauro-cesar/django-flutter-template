@@ -2,11 +2,6 @@ version: "3.9"
 
 
 services:
-  redis:
-    restart: always
-    image: redis:6.0.8-alpine
-    expose:
-      - 6379
 
   cache:
     restart: always
