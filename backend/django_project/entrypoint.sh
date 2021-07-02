@@ -2,23 +2,13 @@
 
 timeout=0
 isReady=0
-if [ "$DATABASE_TYPE" = "pg" ]
-then
-    echo "Waiting for postgres..."
-    while ! isReady; do
-      echo "Not ready"
-        if [ $timeout -le $TIMEOUT]
-        then
-            waittime=$((waittime+1))
-            sleep 10;
-            isReady = $(pg_isready --port $PGPORT --host=$PGHOST);
-        else
-            isReady=1
-        fi
-    done
-    echo "PostgreSQL started"
-fi
 
+if [ -z ${SQL_PORT} ] ; then
+    until nc -z ${SQL_HOST} ${SQL_PORT}; do
+    echo "$(date) - waiting for database"
+    sleep 5
+done
+fi
 
 echo "Starting Django"
 python manage.py makemigrations accounts
@@ -42,7 +32,7 @@ fi
 
 
 screen -wipe
-screen -dmS queue celery -b redis://$REDIS_HOST:6379 -A project worker -B -E
+screen -dmS queue celery -b redis://$REDIS_HOST:6379 -A project worker -B -E -Q $REDIS_QUEUE_NAME
 screen -dmS django gunicorn project.wsgi:application --bind 0.0.0.0:8001 --proxy-protocol --strip-header-spaces
 
 echo "Django Started"

@@ -21,19 +21,19 @@ class MainMenu(Menu):
         self.children += [
             items.MenuItem("Painel administrativo", reverse("admin:index")),
             items.Bookmarks("Atalhos salvos"),
-            items.MenuItem(
-                "Filmes",
-                children=[
-                    items.MenuItem(
-                        "Adicionar filme",
-                        "/admin/movies/moviemodel/add/",
-                    ),
-                    items.MenuItem(
-                        "Adicionar genero",
-                        "/admin/movies/genremodel/add/",
-                    ),
-                ],
-            ),
+            # items.MenuItem(
+            #     "Usuários",
+            #     children=[
+            #         items.MenuItem(
+            #             "Adicionar filme",
+            #             "/admin/movies/moviemodel/add/",
+            #         ),
+            #         items.MenuItem(
+            #             "Adicionar genero",
+            #             "/admin/movies/genremodel/add/",
+            #         ),
+            #     ],
+            # ),
         ]
 
     def init_with_context(self, context):

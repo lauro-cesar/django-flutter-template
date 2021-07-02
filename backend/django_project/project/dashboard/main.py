@@ -15,13 +15,6 @@ class MainDashboard(Dashboard):
     def init_with_context(self, context):
         self.children.append(
             modules.ModelList(
-                title=_("Gerenciamento do catalogo"),
-                models=["movies.models.*"],
-            )
-        )
-
-        self.children.append(
-            modules.ModelList(
                 title=_("Gerenciamento de notificações"),
                 models=[
                     "app_notifications.models.*",

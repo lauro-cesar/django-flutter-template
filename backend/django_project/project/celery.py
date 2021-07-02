@@ -8,6 +8,7 @@ from django.conf import settings
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
 redis_host = os.environ.get("REDIS_HOST", default="localhost")
+
 app = Celery(
     "project",
     broker_url="redis://{redis}:6379".format(redis=redis_host),

@@ -12,7 +12,9 @@ AUTH_USER_MODEL = "accounts.User"
 FIREBASE_APP = firebase_admin.initialize_app()
 
 redis_host = os.environ.get("REDIS_HOST", default="localhost")
+redis_port = os.environ.get("REDIS_PORT", default="6379")
 cache_host = os.environ.get("CACHE_HOST", default="localhost")
+
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     default="_fake_key_",
@@ -20,15 +22,17 @@ SECRET_KEY = os.environ.get(
 DEBUG = int(os.environ.get("DEBUG", default=1))
 
 
-CELERY_BROKER_URL = "redis://{redis}:6379".format(redis=redis_host)
-CELERY_RESULT_BACKEND = "redis://{redis}:6379".format(redis=redis_host)
-
+CELERY_BROKER_URL = "redis://{redis_host}:{redis_port}"
+CELERY_RESULT_BACKEND = "redis://{redis_host}:{redis_port}"
 
 CELERY_ENABLE_UTC = True
 CELERY_TIMEZONE = "America/Sao_Paulo"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
+CELERY_TASK_DEFAULT_QUEUE = os.environ.get(
+    "REDIS_QUEUE_NAME", default="default_django_queue"
+)
 TIME_ZONE = "America/Sao_Paulo"
 
 
