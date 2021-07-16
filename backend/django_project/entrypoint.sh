@@ -32,7 +32,7 @@ fi
 
 
 screen -wipe
-screen -dmS queue celery -b redis://$REDIS_HOST:6379 -A project worker -B -E -Q $REDIS_QUEUE_NAME
+screen -dmS queue celery -b redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DB -A project worker -B -E -Q $REDIS_QUEUE_NAME
 screen -dmS django gunicorn project.wsgi:application --bind 0.0.0.0:8001 --proxy-protocol --strip-header-spaces
 
 echo "Django Started"
