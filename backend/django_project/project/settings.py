@@ -15,7 +15,7 @@ redis_host = os.environ.get("REDIS_HOST", default="localhost")
 redis_port = os.environ.get("REDIS_PORT", default=6379)
 redis_db = os.environ.get("REDIS_DB", default=0)
 cache_host = os.environ.get("CACHE_HOST", default="localhost")
-
+FQDN = os.environ.get("FQDN",default="localhost")
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     default="_fake_key_",
@@ -60,19 +60,14 @@ REST_FRAMEWORK = {
     ],
 }
 
-
 SITE_ID = 1
-
 ALLOWED_HOSTS = [
-    "localhost",
     "127.0.0.1",
-    "django.localhost.hostcert.com.br",
-    "[::1]",
+    f"{FQDN}"
 ]
 
 
 API_VERSION = 1
-
 ADMIN_TOOLS_INDEX_DASHBOARD = "project.dashboard.main.MainDashboard"
 ADMIN_TOOLS_APP_INDEX_DASHBOARD = "project.dashboard.main.MainAppIndexDashboard"
 ADMIN_TOOLS_MENU = "project.dashboard.menu.MainMenu"
@@ -88,7 +83,6 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig",
     "rest_framework",
     "rest_framework.authtoken",
-    "django_filters",
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "django.contrib.sessions",
@@ -98,10 +92,7 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     "django.contrib.humanize",
 ]
-
-
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
 MIDDLEWARE = [
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -155,12 +146,12 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", default="django.db.backends.postgresql"),
-        "NAME": os.environ.get("PGDATABASE", default="django_db"),
-        "USER": os.environ.get("POSTGRES_USER", default="django_user"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", default="django_password"),
-        "HOST": os.environ.get("SQL_HOST", default="127.0.0.1"),
-        "PORT": os.environ.get("SQL_PORT", default="5432"),
+        "ENGINE": os.environ.get("DATABASE_ENGINE", default="django.db.backends.postgresql"),
+        "NAME": os.environ.get("DATABASE_NAME", default="django_db"),
+        "USER": os.environ.get("DATABASE_USER", default="django_user"),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD", default="django_password"),
+        "HOST": os.environ.get("DATABASE_HOST", default="127.0.0.1"),
+        "PORT": os.environ.get("DATABASE_PORT", default="5432"),
     }
 }
 
@@ -186,8 +177,10 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_THOUSAND_SEPARATOR = True
 USE_L10N = True
+
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+PRIVATE_DIR = os.path.join(BASE_DIR, "media/private")
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"

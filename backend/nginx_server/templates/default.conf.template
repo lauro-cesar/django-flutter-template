@@ -3,6 +3,11 @@ server {
     listen  80  default_server;
     server_name localhost;
 
+
+    location ${PRIVATE_DIR} {
+        internal;
+    }
+
     location /media/ {
         alias ${MEDIA_DIR};
     }
