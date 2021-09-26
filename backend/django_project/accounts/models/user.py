@@ -4,41 +4,28 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import ugettext_lazy as _
 from django import forms
-
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from rest_framework.authtoken.models import Token
 
 class User(AbstractUser):
-    
-    dateCreated = models.DateTimeField(
-        auto_now=True, verbose_name=_("Data  de registro")
-    )
-
-    lastModified = models.DateTimeField(auto_now=True, verbose_name=_("Último login"))
-
-    profile_image = models.FileField(upload_to="avatars/", default="core/smalllogo.png")
-
+    TASKS={
+        'on_create':['addUserToDefaultTrial','createToken'],
+        'on_save':[],
+        'on_delete':['removeUserFromStripe']
+    }
+    dateCreated = models.DateTimeField(auto_now=True)
+    lastModified = models.DateTimeField(auto_now=True)
+    testUser = models.BooleanField(default=False)
+    guestUser = models.BooleanField(default=False)
     validEmail = models.BooleanField(default=False)
+    email = models.EmailField(unique=True)
 
-    countryCode = models.CharField(
-        max_length=155, default="55", blank=True, verbose_name=_("Codigo do pais")
-    )
+    def generateSingleSigninToken(self):
+        token = default_token_generator.make_token(self)
+        uidb64 = urlsafe_base64_encode(str(self.pk).encode())
+        return {"token": token, "uidb64": uidb64}
 
-    localAreaCode = models.CharField(
-        max_length=155, blank=True, default="", verbose_name=_("DDD")
-    )
-
-    phoneNumber = models.CharField(
-        max_length=155, default="", verbose_name=_("Telefone"), blank=True
-    )
-
-    notifications = models.BooleanField(default=True, blank=True)
-    news_letter = models.BooleanField(default=True, blank=True)
-    sms = models.BooleanField(default=True, blank=True)
-    autoAccount = models.BooleanField(default=False, blank=True)
-    testUser = models.BooleanField(default=False, blank=True)
-
-    @property
-    def notificationToken(self):
-        return ""
 
     @property
     def name(self):
