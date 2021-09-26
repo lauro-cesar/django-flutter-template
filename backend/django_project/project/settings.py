@@ -15,7 +15,7 @@ redis_host = os.environ.get("REDIS_HOST", default="localhost")
 redis_port = os.environ.get("REDIS_PORT", default=6379)
 redis_db = os.environ.get("REDIS_DB", default=0)
 cache_host = os.environ.get("CACHE_HOST", default="localhost")
-FQDN = os.environ.get("FQDN",default="localhost")
+FQDNS = os.environ.get("FQDNS",default="localhost,")
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     default="_fake_key_",
@@ -59,9 +59,8 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 ALLOWED_HOSTS = [
-    "127.0.0.1",
-    f"{FQDN}"
-]
+    "127.0.0.1",    
+]+list(FQDNS.split(","))
 
 
 API_VERSION = 1
@@ -88,6 +87,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.flatpages",
     "django.contrib.humanize",
+    "checklists.apps.ChecklistsConfig"
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [

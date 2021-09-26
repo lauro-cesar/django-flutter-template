@@ -13,6 +13,20 @@ class MainDashboard(Dashboard):
     title = ""
 
     def init_with_context(self, context):
+
+        
+
+        self.children.append(
+            modules.ModelList(
+                title=_("Gerenciamento de checklists"),
+                models=[
+                    "checklists.models.*",
+                ],
+            )
+        )
+
+
+
         self.children.append(
             modules.ModelList(
                 title=_("Gerenciamento de notificações"),

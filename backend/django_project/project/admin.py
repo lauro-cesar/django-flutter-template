@@ -7,6 +7,7 @@ class BaseModelAdmin(admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 50
     actions_on_bottom = True
+    EXCLUDE_FROM_ADMIN = ["isActive", "isDone", "isComplete", "isPublic", "isProcessed"]
     exclude = ["isActive", "isDone", "isComplete", "isPublic", "isProcessed"]
 
 

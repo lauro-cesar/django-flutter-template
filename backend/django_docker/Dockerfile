@@ -33,7 +33,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requir
 
 # pull official base image
 FROM python:3.8
-RUN apt-get update && apt-get -y install postgresql-client-11 binutils libgdal-dev libproj-dev gdal-bin postgis
+RUN apt-get update && apt-get -y install postgresql-client binutils libgdal-dev libproj-dev gdal-bin postgis netcat
 RUN export LC_ALL="pt_BR.UTF-8"
 RUN export LC_CTYPE="pt_BR.UTF-8"
 RUN dpkg-reconfigure locales

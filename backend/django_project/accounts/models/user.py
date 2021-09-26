@@ -7,6 +7,7 @@ from django import forms
 
 
 class User(AbstractUser):
+    
     dateCreated = models.DateTimeField(
         auto_now=True, verbose_name=_("Data  de registro")
     )

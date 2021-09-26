@@ -1,9 +1,16 @@
 version: "3.9"
 
-
 services:
-
-  cache:
+  django_redis:
+    restart: always
+    image: redis:alpine
+    env_file:
+      - .env-redis.yaml
+      - .env-common.yaml
+    expose:
+      - 6379
+    
+  django_cache:
     restart: always
     image: memcached
     env_file:
@@ -12,10 +19,21 @@ services:
 
     expose:
       - 11211
+
     entrypoint:
       - memcached
       - -m 64
 
+  django_db:
+    restart: always
+    image: postgres:12.8-alpine3.14
+    volumes:
+      - "/var/lib/postgresql/django_project/data/pgdata/:/var/lib/postgresql/data/pgdata/"
+    env_file:
+      - .env-db.yaml  
+      - .env-common.yaml
+    expose:
+      - 5432
 
   django_project:
     restart: always
@@ -26,8 +44,8 @@ services:
       context: ./django_docker
       dockerfile: Dockerfile
     command: bash -c /home/django_project/entrypoint.sh
-    ports:
-      - 8010:8001
+    expose:
+      - 8001
 
     env_file:
       - .env-db.yaml
@@ -37,8 +55,8 @@ services:
       - .env-common.yaml
 
     depends_on:
-      - cache
-      - redis
+      - django_cache
+      - django_redis
 
   nginx_static_server:
     restart: always
@@ -53,14 +71,13 @@ services:
 
     volumes:
       - "./django_project/:/home/django_project/"
-    # Onde está o acesso ao static e ao media
     ports:
-      - 9010:80
+      - 9060:80
 
     depends_on:
       - django_project
-      - cache
-      - redis
+      - django_cache
+      - django_redis
 
 volumes:
   static_volume:
